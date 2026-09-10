@@ -1,0 +1,22 @@
+# Registration Admin v23 QA
+
+- Activity Log navigation: PASS
+- Director-only Activity Log access: PASS
+- Supabase organizer identity captured: PASS
+- Sign-in / sign-out events: PASS
+- Registration status events: PASS
+- Eligibility / DUPR events: PASS
+- Category assignment events: PASS
+- Trash events: PASS
+- Configuration-save events: PASS
+- Registration export events: PASS
+- Backup download / restore events: PASS
+- Email-setting events: PASS
+- Access & Roles history merged: PASS
+- Automatic email history merged: PASS
+- Search / category / actor / date filters: PASS
+- Activity CSV export: PASS
+- Activity data included in backups: PASS
+- Supabase Auth preserved: PASS
+- Responsive layout: PASS
+- JavaScript syntax: PASS
