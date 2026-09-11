@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b4a34" />
+  <meta name="description" content="Animo Pickleball Cup 2026 registration administration." />
+  <title>Animo Pickleball Cup 2026 — Tournament Control</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="admin-only-body auth-locked">
+  <section class="admin-auth-gate" id="adminAuthGate" aria-live="polite">
+    <div class="admin-auth-shell">
+      <div class="admin-auth-brand">
+        <span class="admin-auth-mark">A</span>
+        <div><strong>Animo</strong><small>Registration Admin</small></div>
+      </div>
+
+      <div class="admin-auth-card">
+        <div class="admin-auth-card-copy">
+          <p class="eyebrow">Secure organizer access</p>
+          <h1>Sign in to Registration Control</h1>
+          <p>Use an organizer account assigned to the Animo Pickleball Cup 2026 admin workspace.</p>
+        </div>
+
+        <div class="admin-auth-status" id="adminAuthStatus" hidden></div>
+
+        <form id="adminLoginForm" class="admin-login-form">
+          <label class="field">
+            <span>Email address</span>
+            <input id="adminLoginEmail" type="email" autocomplete="username" required placeholder="organizer@example.com" />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <div class="admin-password-field">
+              <input id="adminLoginPassword" type="password" autocomplete="current-password" required placeholder="Enter your password" />
+              <button id="toggleAdminPassword" type="button" aria-label="Show password">Show</button>
+            </div>
+          </label>
+          <button class="button button-primary admin-login-button" id="adminLoginButton" type="submit">Sign In</button>
+        </form>
+
+        <div class="admin-auth-foot">
+          <span class="admin-auth-security-dot"></span>
+          <p>Authentication and role permissions are verified by Supabase. Players do not use this login.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <div class="brand-lockup" aria-label="Animo Registration Admin">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-copy"><strong>Animo</strong><small>Registration Admin</small></span>
+      </div>
+      <div class="nav-actions admin-session-actions">
+        <div class="admin-session-user">
+          <strong id="adminSessionName">Organizer</strong>
+          <small id="adminSessionEmail">Signed in</small>
+        </div>
+        <span class="status-pill" id="adminSessionRole">Role</span>
+        <button class="admin-logout-button" id="adminLogoutButton" type="button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="admin-shell shell">
+      <div class="admin-topbar">
+        <div>
+          <p class="eyebrow">Tournament administration</p>
+          <h1 class="admin-page-title">Registration Control</h1>
+        </div>
+        <div class="admin-actions">
+          <button class="button button-ghost" id="exportCsvButton" type="button">Download Registrations</button>
+          <button class="button button-primary" id="savePublishButton" type="button">Save Changes</button>
+        </div>
+      </div>
+
+      <div class="admin-backend-banner">
+        <div><span class="admin-backend-dot connected"></span><strong>Supabase Auth connected</strong><small id="adminBackendIdentity">Checking organizer access…</small></div>
+        <div><span class="admin-backend-dot"></span><strong>Registration data</strong><small id="registrationDataStatus">Production live mode · registrations, eligibility, payment methods, proof files, status changes and Trash are server-authoritative.</small></div>
+      </div>
+
+      <div class="admin-layout">
+        <aside class="admin-sidebar" aria-label="Admin sections">
+          <button class="admin-tab active" type="button" data-admin-tab="registrations"><span>01</span> Registration Requests</button>
+          <button class="admin-tab" type="button" data-admin-tab="trash"><span>02</span> Trash</button>
+          <button class="admin-tab" type="button" data-admin-tab="reports"><span>03</span> Reports & Insights</button>
+          <button class="admin-tab" type="button" data-admin-tab="details"><span>04</span> Event Details</button>
+          <button class="admin-tab" type="button" data-admin-tab="divisions"><span>05</span> Divisions & Fees</button>
+          <button class="admin-tab" type="button" data-admin-tab="payments"><span>06</span> Payment Methods</button>
+          <button class="admin-tab" type="button" data-admin-tab="dupr"><span>07</span> Level Rules</button>
+          <button class="admin-tab" type="button" data-admin-tab="hero"><span>08</span> Hero Carousel</button>
+          <button class="admin-tab" type="button" data-admin-tab="faq"><span>09</span> FAQ</button>
+          <button class="admin-tab" type="button" data-admin-tab="contact"><span>10</span> Contact</button>
+          <button class="admin-tab" type="button" data-admin-tab="notifications"><span>11</span> Email Notifications</button>
+          <button class="admin-tab" type="button" data-admin-tab="activity"><span>12</span> Activity Log</button>
+          <button class="admin-tab" type="button" data-admin-tab="backup"><span>13</span> Backup & Restore</button>
+          <button class="admin-tab" type="button" data-admin-tab="access"><span>14</span> Access & Roles</button>
+        </aside>
+        <div class="admin-mobile-nav-wrap">
+          <label for="adminMobileNav">
+            <span>Admin section</span>
+            <select id="adminMobileNav" aria-label="Choose admin section">
+              <option value="registrations">Registration Requests</option>
+              <option value="trash">Trash</option>
+              <option value="reports">Reports & Insights</option>
+              <option value="details">Event Details</option>
+              <option value="divisions">Divisions & Fees</option>
+              <option value="payments">Payment Methods</option>
+              <option value="dupr">Level Rules</option>
+              <option value="hero">Hero Carousel</option>
+              <option value="faq">FAQ</option>
+              <option value="contact">Contact</option>
+              <option value="notifications">Email Notifications</option>
+              <option value="activity">Activity Log</option>
+              <option value="backup">Backup & Restore</option>
+              <option value="access">Access & Roles</option>
+            </select>
+          </label>
+        </div>
+        <section class="admin-card" id="adminPanel" aria-live="polite"></section>
+      </div>
+    </section>
+  </main>
+
+  <nav class="admin-mobile-bottom-nav" aria-label="Primary admin navigation">
+    <button type="button" data-mobile-primary-tab="registrations">
+      <span class="mobile-nav-icon" aria-hidden="true">◎</span>
+      <span>Requests</span>
+    </button>
+    <button type="button" data-mobile-primary-tab="reports">
+      <span class="mobile-nav-icon" aria-hidden="true">▦</span>
+      <span>Reports</span>
+    </button>
+    <button type="button" id="adminMobileMoreButton">
+      <span class="mobile-nav-icon" aria-hidden="true">•••</span>
+      <span>More</span>
+    </button>
+  </nav>
+
+  <dialog id="adminMobileMoreDialog" class="admin-mobile-more-dialog">
+    <div class="admin-mobile-more-sheet">
+      <header>
+        <div>
+          <p class="eyebrow">Administration</p>
+          <h2>More</h2>
+        </div>
+        <button type="button" id="adminMobileMoreClose" class="mobile-sheet-close" aria-label="Close">×</button>
+      </header>
+      <div class="admin-mobile-more-grid">
+        <button type="button" data-mobile-more-tab="trash"><span>02</span><strong>Trash</strong></button>
+        <button type="button" data-mobile-more-tab="details"><span>04</span><strong>Event Details</strong></button>
+        <button type="button" data-mobile-more-tab="divisions"><span>05</span><strong>Divisions & Fees</strong></button>
+        <button type="button" data-mobile-more-tab="payments"><span>06</span><strong>Payment Methods</strong></button>
+        <button type="button" data-mobile-more-tab="dupr"><span>07</span><strong>Level Rules</strong></button>
+        <button type="button" data-mobile-more-tab="hero"><span>08</span><strong>Hero Carousel</strong></button>
+        <button type="button" data-mobile-more-tab="faq"><span>09</span><strong>FAQ</strong></button>
+        <button type="button" data-mobile-more-tab="contact"><span>10</span><strong>Contact</strong></button>
+        <button type="button" data-mobile-more-tab="notifications"><span>11</span><strong>Email Notifications</strong></button>
+        <button type="button" data-mobile-more-tab="activity"><span>12</span><strong>Activity Log</strong></button>
+        <button type="button" data-mobile-more-tab="backup"><span>13</span><strong>Backup & Restore</strong></button>
+        <button type="button" data-mobile-more-tab="access"><span>14</span><strong>Access & Roles</strong></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="recordModal"><div class="modal-card admin-record-modal"><button class="modal-close" id="recordModalClose" aria-label="Close">×</button><div id="recordModalBody"></div></div></dialog>
+  <input id="importJsonInput" type="file" accept=".animo-backup,.json,application/json" hidden />
+
+  <script src="tournament-config-production-1.1.1.js"></script>
+  <script src="admin-production-1.1.1-green-header.js"></script>
+</body>
+</html>
