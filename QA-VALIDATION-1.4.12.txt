@@ -1,0 +1,13 @@
+ANIMO PICKLEBALL CUP 2026
+ADMIN SAFE TEST LOCK UX — QA
+Admin 1.4.12 + Registration API 2.3.7 + SQL Safe Test M2
+
+PASS — Admin JavaScript syntax check.
+PASS — Tournament config JavaScript syntax check.
+PASS — Create Live Registration retains backend request-signature safety gate.
+PASS — Create Live Registration starts disabled before Safe Test passes.
+PASS — Dedicated disabled styling uses !important after Admin theme overrides.
+PASS — Disabled hover remains visually disabled.
+PASS — Any form edit clears prior Safe Test and re-locks live creation.
+PASS — Successful Safe Test rerender enables live creation for the exact tested request only.
+PASS — No API, SQL, pricing, double-entry, capacity, payment, identity, or email logic changed.

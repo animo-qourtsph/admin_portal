@@ -1,0 +1,39 @@
+ANIMO PICKLEBALL CUP 2026
+ADMIN STARTUP PERFORMANCE — PRODUCTION QA
+Admin 1.4.11 + Registration API 2.3.7 + Safe Test M2
+
+STATIC / SYNTAX QA
+PASS — Admin JavaScript passes node --check.
+PASS — Tournament config JavaScript passes node --check.
+PASS — Admin build = production-1.4.11-admin-startup-performance.
+PASS — API contract remains 2026.09.14.1.
+PASS — Core schema requirement remains 2026.09.14.1.
+PASS — Safe Test Mode hooks remain present.
+PASS — Exactly one initializeAuthenticatedAdmin implementation remains.
+
+STARTUP ARCHITECTURE
+PASS — Returning-session backend health overlaps organizer-session/access restoration.
+PASS — Login backend health overlaps password authentication.
+PASS — Authenticated shell renders before production data hydration completes.
+PASS — Production config, portal state, and registration snapshot start concurrently.
+PASS — Email notification settings are removed from the critical startup path and remain lazy-loaded on Notifications.
+PASS — Live sync starts only after the authoritative registration snapshot is loaded.
+PASS — Registration Requests renders a loading state during startup instead of a false unavailable state.
+PASS — Supabase preconnect/dns-prefetch added.
+
+ASSET QA
+Original three-logo payload: 5,002,655 bytes.
+Optimized three-logo payload: 170,756 bytes.
+Reduction: 96.6%.
+PASS — Event logo: 256 x 256 PNG with transparency.
+PASS — Pickleball Pampanga logo: 160 x 156 PNG with transparency.
+PASS — DLSAA Pampanga logo: 160 x 160 PNG with transparency.
+PASS — Dimensions retain at least ~3x pixel density for their largest rendered Admin sizes.
+PASS — 1.4.11 cache-busting applied to optimized image/CSS/JS references.
+
+SAFETY
+PASS — No SQL migration required.
+PASS — No API change required; API 2.3.7 remains the production dependency.
+PASS — No registration/business-rule/pricing/double-entry/payment logic changed.
+PASS — Registration records remain server-authoritative and are not cached in localStorage.
+PASS — Backend compatibility gate remains required before protected Admin API actions.
